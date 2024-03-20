@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
 
+To run the frontend please, run the command 'npm install', then you can run it with 'ng serve -o' command.
+
+NOTE: You have to import the database and run the server previously.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
