@@ -1,0 +1,134 @@
+<div class="container">
+  <mat-spinner diameter="50" class="spinner" *ngIf="load"></mat-spinner>
+  <div *ngIf="!load">
+    <mat-toolbar>
+      <span>Create Superhero</span>
+    </mat-toolbar>
+
+    <mat-card class="mt-10">
+      <form [formGroup]="form" (ngSubmit)="createSuperhero()">
+        <mat-grid-list cols="4" rowHeight="100px">
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <div class="form-field-container w-80">
+              <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input
+                  matInput
+                  autocomplete="off"
+                  formControlName="name"
+                  type="text"
+                  [value]="form.value.name"
+                />
+              </mat-form-field>
+              <div class="error">
+                <span
+                  *ngIf="
+                    form.get('name')?.hasError('required') &&
+                    form.get('name')?.touched
+                  "
+                  >Name is required.</span
+                >
+                <span
+                  *ngIf="
+                    form.get('name')?.hasError('pattern') &&
+                    form.get('name')?.touched
+                  "
+                  >Please, write first character in caps.
+                </span>
+              </div>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="3" [rowspan]="5">
+            <img src="../../../../../assets/img/create-superhero1.jpg" />
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <div class="form-field-container w-80">
+              <mat-form-field>
+                <mat-label>Age</mat-label>
+                <input
+                  matInput
+                  autocomplete="off"
+                  formControlName="age"
+                  type="number"
+                />
+              </mat-form-field>
+              <div class="error">
+                <span
+                  *ngIf="
+                    form.get('age')?.hasError('required') &&
+                    form.get('age')?.touched
+                  "
+                  >Age is required.</span
+                >
+              </div>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <div class="form-field-container w-80">
+              <mat-form-field>
+                <mat-label>Ability</mat-label>
+                <input
+                  matInput
+                  autocomplete="off"
+                  formControlName="ability"
+                  type="text"
+                />
+              </mat-form-field>
+              <div class="error">
+                <span
+                  *ngIf="
+                    form.get('ability')?.hasError('required') &&
+                    form.get('ability')?.touched
+                  "
+                  >Ability is required.</span
+                >
+              </div>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <div class="form-field-container w-80">
+              <mat-form-field>
+                <mat-label>Universe</mat-label>
+                <mat-select formControlName="universe">
+                  <mat-option
+                    *ngFor="let universe of universes"
+                    [value]="universe"
+                  >
+                    {{ universe }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="error">
+                <span
+                  *ngIf="
+                    form.get('universe')?.hasError('required') &&
+                    form.get('universe')?.touched
+                  "
+                  >Universe is required.</span
+                >
+              </div>
+            </div>
+          </mat-grid-tile>
+          <mat-grid-tile [colspan]="1" [rowspan]="1">
+            <button
+              mat-raised-button
+              (click)="goBack()"
+              class="mr-20"
+              color="secondary"
+            >
+              Back
+            </button>
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              [disabled]="form.invalid"
+            >
+              Create
+            </button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+    </mat-card>
+  </div>
+</div>

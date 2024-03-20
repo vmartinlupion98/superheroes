@@ -1,0 +1,36 @@
+p{
+    font-size: large;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    mat-grid-list {
+        grid-template-columns: 1fr;
+    }
+
+    mat-grid-tile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: 370%;
+        overflow-y: auto;
+    }
+
+    span{
+        font-size: small;
+    }
+
+    .mat-grid-tile p {
+        font-size: 0.9em;
+        line-height: 1.4;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}

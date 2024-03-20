@@ -1,0 +1,24 @@
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100"
+  rel="stylesheet"
+/>
+
+<mat-toolbar color="primary">
+  <img src="../../../../assets/img/superheroes.png" />
+  <span class="spacer"></span>
+  <button mat-button *ngFor="let m of menu" [routerLink]="m.redirect">
+    {{ m.name }}
+  </button>
+  <span class="spacer"></span>
+  <div class="language-selector">
+    <mat-select
+      class="language-selector"
+      (selectionChange)="clickTranslate($event.value)"
+      placeholder="{{ selectedOption }}"
+    >
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-select>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,25 @@
+span.size-40 {
+    font-size: 40px;
+    font-variation-settings: 'OPSZ' 40;
+}
+
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.language-selector{
+    min-width: 80px;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .mat-toolbar img {
+        width: 30px; /* Reducir el tamaño de la imagen para pantallas más pequeñas */
+    }
+
+    .mat-toolbar {
+        padding: 0 10px; /* Reducir el espaciado horizontal para pantallas más pequeñas */
+    }
+}

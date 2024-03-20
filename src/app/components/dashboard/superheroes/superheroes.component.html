@@ -1,0 +1,94 @@
+<div class="container">
+  <mat-toolbar>
+    <span>{{ "superhero-title" | transloco }}</span>
+    <div class="spacer"></div>
+    <button
+      mat-raised-button
+      color="primary"
+      routerLink="/dashboard/create-superhero"
+    >
+      <span> ADD SUPERHERO</span>
+    </button>
+  </mat-toolbar>
+
+  <div *ngIf="dataSource.data.length > 0" class="content">
+    <mat-form-field class="mt-10 filter">
+      <mat-label>Filter</mat-label>
+      <input
+        matInput
+        id="filter"
+        (keyup)="applyFilter($event)"
+        placeholder="Search Superhero by name"
+        #input
+        autocomplete="off"
+      />
+    </mat-form-field>
+    <div class="table-overflow mat-elevation-z4">
+      <table mat-table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.name | uppercase }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Age</th>
+          <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="ability">
+          <th mat-header-cell *matHeaderCellDef>Ability</th>
+          <td mat-cell *matCellDef="let element">{{ element.ability }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="universe">
+          <th mat-header-cell *matHeaderCellDef>Universe</th>
+          <td mat-cell *matCellDef="let element">{{ element.universe }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" class="actions">
+            <button
+              mat-icon-button
+              (click)="editSuperhero(element.id)"
+              matTooltip="Edit"
+              class="edit-button"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              (click)="deleteSuperhero(element.id)"
+              matTooltip="Delete"
+              class="delete-button"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">
+            No data matching the filter "{{ input.value }}"
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="mat-elevation-z4">
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of superheroes"
+      >
+      </mat-paginator>
+    </div>
+  </div>
+  <h2 *ngIf="dataSource.data.length == 0">
+    Sorry, there aren't SuperHeros to show!
+  </h2>
+</div>
